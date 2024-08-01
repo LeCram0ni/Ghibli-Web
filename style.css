@@ -109,6 +109,8 @@ header img {
 
 .wrapper{
   display:flex;
+  margin-top: 3vw;
+  margin-bottom:3vw;
 }
 
 .wrapper .carousel{
@@ -121,12 +123,11 @@ header img {
   height:800px;
 }
 
-.carousel img:first-child{
+
+body > div.wrapper > div > img{
+
+  
 }
-
-
-
-
 
 p {
   text-align: justify;
