@@ -19,6 +19,13 @@ $gradient-radial: radial-gradient(#95C9D4ff, #F2BEA6ff, #BE858Cff, #727840ff, #E
   --defaultMargin: 17vw;
   --backgroundBlur: url("media/marnie020blurred5.jpg");
   --topImage: url("media/marnie020.jpg");
+  --bgColor: rgba(16, 16, 16, 1);
+  --bgColorFade: rgba(16, 16, 16, 0);
+  --ffcolorA: rgba(255, 54, 89, 1);
+  --ffcolorB: rgba(255, 154, 0, 1);
+  --ffcolorC: rgba(103, 218, 193, 1);
+  --ffcolorD: rgba(41, 158, 255, 1);
+
 }
 
 body {
@@ -28,7 +35,7 @@ body {
   margin: 30px;
   margin-left: var(--defaultMargin);
   margin-right: var(--defaultMargin);
-  background-color: rgb(16, 16, 16);
+  background-color: var(--bgColor);
   flex-direction: column;
   max-width: 100%;
 
@@ -51,6 +58,18 @@ header img {
   margin-bottom: -10vw;
 }
 
+.mainImage {
+  margin-top: 2vw;
+  height: 50vw;
+  display: block;
+  width: 89vw;
+  border-radius: 4vw 4vw 0px 0px;
+  background-image: linear-gradient(0deg, var(--bgColor) 10%, var(--bgColorFade) 70%), var(--topImage);
+  background-repeat: no-repeat;
+  background-size: 89vw;
+  filter: saturate(115%);
+}
+
 .mainTitle {
   color: white;
   text-align: center;
@@ -66,23 +85,12 @@ header img {
   font-style: italic;
 }
 
-.mainImage {
-  margin-top: 2vw;
-  height: 50vw;
-  display: block;
-  width: 89vw;
-  border-radius: 4vw 4vw 0px 0px;
-  background-image: linear-gradient(0deg, rgba(16, 16, 16, 1) 10%, rgba(16, 16, 16, 0) 70%), var(--topImage);
-  background-repeat: no-repeat;
-  background-size: 89vw;
-  filter: saturate(115%);
-}
-
 #description,
 #description-bottom {
   display: flex;
   flex-direction: column;
   font-size: 42pt;
+  line-height: 135%;
   color: white;
   overflow: hidden;
 }
@@ -100,9 +108,7 @@ header img {
 /*firefox fix*/
 @-moz-document url-prefix() {
   #description>p.colored {
-    background: -moz-linear-gradient(110deg,
-      rgba(255,54,89,1) 0%, rgba(255,154,0,1) 50%, rgba(103,218,193,1) 70%, rgba(41,158,255,1) 100%
-    );
+    background: -moz-linear-gradient(110deg, var(--ffcolorA) 0%, var(--ffcolorB) 50%, var(--ffcolorC) 70%, var(--ffcolorD) 100%);
     background-size: cover;
     background-clip: text;
     color: transparent;
@@ -119,7 +125,6 @@ header img {
   font-size: 60pt !important;
   line-height: 160%;
 }
-
 
 .wrapper {
   display: flex;
