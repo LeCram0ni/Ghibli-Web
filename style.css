@@ -30,6 +30,8 @@ body {
   margin-right: var(--defaultMargin);
   background-color: rgb(16, 16, 16);
   flex-direction: column;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 header {
@@ -111,23 +113,21 @@ header img {
   display:flex;
   margin-top: 3vw;
   margin-bottom:3vw;
+  /*max-width: 99vw;*/
+  
 }
 
 .wrapper .carousel{
   white-space: nowrap;
   cursor:pointer;
   overflow:hidden;
+  margin: 0 auto;
 }
 
 .carousel img{
-  height:800px;
+  height:36vw;
 }
 
-
-body > div.wrapper > div > img{
-
-  
-}
 
 p {
   text-align: justify;
