@@ -31,7 +31,7 @@ body {
   background-color: rgb(16, 16, 16);
   flex-direction: column;
   max-width: 100%;
-  overflow-x: hidden;
+  
 }
 
 header {
