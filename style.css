@@ -70,13 +70,12 @@ header img {
 
 #description,
 #description-bottom {
-  display: flex;
-  flex-direction: column;
   font-size: 42pt;
   line-height: 135%;
   color: white;
   overflow: hidden;
 }
+
 
 #description>p.colored {
   background-image: var(--backgroundBlur);
@@ -114,6 +113,7 @@ header img {
   margin:0px;
   margin-top: 3vw;
   margin-bottom: 3vw;
+  
 }
 
 .wrapper .carousel {
@@ -122,6 +122,9 @@ header img {
   cursor: pointer;
   margin: 0 auto;
   height: 100%;
+  position:relative;
+  overflow: visible;
+  max-width:99vw;
 }
 
 .carousel img {
@@ -129,6 +132,7 @@ header img {
   width: 72vw;
   object-fit: contain;
   margin:0;
+  transform: translate(-58.5vw, 0px);
 }
 
 

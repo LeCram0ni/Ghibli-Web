@@ -1,54 +1,73 @@
-
-let galleryImageWidth;
-let output;
-
-function getWidth(){
-  galleryImageWidth = document.querySelector("body div.wrapper div img").width;
-  return galleryImageWidth;
-};
-
-function updateWidth(event) {
-  getWidth();
-  output = galleryImageWidth;
-  console.log(output);
-};
-
-/*
-function start() {
-  document.getElementById("toShift").style.transform = "translate("+"${output}"+"px, 0px)";
-};
-*/
-
-window.addEventListener("load", updateWidth);
-window.addEventListener("resize", updateWidth);
-
 window.onload = start;
 
+/* jquery $ */
+
+let isAnimating = false;
+
 function start() {
-  
-  $("#left-button").on("click", handleLeftClick);
-  $("#right-button").on("click", handleRightClick);
+  // Initiale Event-Handler Zuweisung
+  $("#toShift > img:nth-child(1)").on("click", handleLeftClick);
+  $("#toShift > img:nth-child(3)").on("click", handleRightClick);
 }
- 
 
 function handleLeftClick() {
-    $("#left-button").off("click");
-    $(".carousel").animate({
-      left: "-" + "${output}" + "px"
-    },400,"swing", function complete(){
-      $(".carousel img:first-child").appendTo($(".carousel"));
-      $(".gcarousel").css("left", "0");
-      $("#left-button").on("click", handleLeftClick);
-    });
+  if (isAnimating) return;
+  isAnimating = true;
+
+  const $carousel = $(".carousel");
+  const imgWidth = $(".carousel img:first-child").width();
+
+  // Stoppe alle laufenden Animationen und setze die Karussell-Position zurück
+  $carousel.stop(true, true);
+
+  // Verschiebe das letzte Bild an den Anfang
+  $carousel.find("img:last-child").prependTo($carousel);
+  
+  // Setze das Karussell sofort nach links
+  $carousel.css("left", "-" + imgWidth + "px");
+
+  // Animation zurück zur Ausgangsposition
+  $carousel.animate({ left: 0 }, 400, "swing", function() {
+    isAnimating = false;
+    // Aktualisiere die Event-Handler
+    updateEventHandlers();
+  });
 }
 
 function handleRightClick() {
-  $("#right-button").off("click");
-    $(".carousel img:last-child").prependTo($(".carousel"));
-    $(".carousel").css("left", "-" + $(".carousel img:first-child").width() + "px");
-    $(".carousel").animate({
-      left: 0
-    },400,"swing", function complete(){
-      $("#right-button").on("click", handleRightClick);
-    });  
+  if (isAnimating) return;
+  isAnimating = true;
+
+  const $carousel = $(".carousel");
+  const imgWidth = $(".carousel img:first-child").width();
+
+  // Stoppe alle laufenden Animationen und setze die Karussell-Position zurück
+  $carousel.stop(true, true);
+
+  // Verschiebe das Karussell nach links
+  $carousel.animate({ left: "-" + imgWidth + "px" }, 400, "swing", function() {
+    // Verschiebe das erste Bild ans Ende
+    $carousel.find("img:first-child").appendTo($carousel);
+    
+    // Setze das Karussell zurück
+    $carousel.css("left", 0);
+    
+    isAnimating = false;
+    // Aktualisiere die Event-Handler
+    updateEventHandlers();
+  });
 }
+
+function updateEventHandlers() {
+  // Entferne alle vorherigen Event-Handler
+  $("#toShift > img").off("click");
+
+  // Binde die neuen Event-Handler an die korrekten Bilder
+  $("#toShift > img:nth-child(1)").on("click", handleLeftClick);
+  $("#toShift > img:nth-child(3)").on("click", handleRightClick);
+}
+
+// Event-Handler starten
+$(document).ready(function() {
+  start();
+});
