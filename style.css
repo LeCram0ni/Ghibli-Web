@@ -111,20 +111,24 @@ header img {
 
 .wrapper {
   display: flex;
+  margin:0px;
   margin-top: 3vw;
   margin-bottom: 3vw;
-  /*max-width: 99vw;*/
 }
 
 .wrapper .carousel {
+  display: flex;
   white-space: nowrap;
   cursor: pointer;
-  overflow: hidden;
   margin: 0 auto;
+  height: 100%;
 }
 
 .carousel img {
-  height: 36vw;
+  max-height: 1000px;
+  width: 72vw;
+  object-fit: contain;
+  margin:0;
 }
 
 
