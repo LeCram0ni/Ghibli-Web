@@ -22,7 +22,12 @@ body {
   flex-direction: column;
   max-width: 100%;
 
+  overflow-y: scroll; 
+  overflow-x: hidden;
+
 }
+
+
 
 header {
   display: flex;
@@ -137,7 +142,7 @@ header img {
 
 #toShift > img:nth-child(1) , #toShift > img:nth-child(3){
   filter:brightness(50%);
-  transition: filter 500ms ease-in-out;
+  transition: filter 600ms ease-in-out;
 }
 
 #toShift > img:nth-child(2){

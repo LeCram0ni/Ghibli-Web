@@ -30,7 +30,7 @@ function handleLeftClick() {
   $carousel.animate({ left: 0 }, 300, "swing", function () {
     setTimeout(function () {
       isAnimating = false;
-    }, 500);
+    }, 400);
     // Aktualisiere die Event-Handler
     updateEventHandlers();
   });
@@ -56,7 +56,7 @@ function handleRightClick() {
 
     setTimeout(function () {
       isAnimating = false;
-    }, 500);
+    }, 400);
 
     // Aktualisiere die Event-Handler
     updateEventHandlers();
