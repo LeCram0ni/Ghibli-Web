@@ -22,13 +22,15 @@ function handleLeftClick() {
 
   // Verschiebe das letzte Bild an den Anfang
   $carousel.find("img:last-child").prependTo($carousel);
-  
+
   // Setze das Karussell sofort nach links
   $carousel.css("left", "-" + imgWidth + "px");
 
   // Animation zurück zur Ausgangsposition
-  $carousel.animate({ left: 0 }, 300, "swing", function() {
-    isAnimating = false;
+  $carousel.animate({ left: 0 }, 300, "swing", function () {
+    setTimeout(function () {
+      isAnimating = false;
+    }, 500);
     // Aktualisiere die Event-Handler
     updateEventHandlers();
   });
@@ -45,14 +47,17 @@ function handleRightClick() {
   $carousel.stop(true, true);
 
   // Verschiebe das Karussell nach links
-  $carousel.animate({ left: "-" + imgWidth + "px" }, 300, "swing", function() {
+  $carousel.animate({ left: "-" + imgWidth + "px" }, 300, "swing", function () {
     // Verschiebe das erste Bild ans Ende
     $carousel.find("img:first-child").appendTo($carousel);
-    
+
     // Setze das Karussell zurück
     $carousel.css("left", 0);
-    
-    isAnimating = false;
+
+    setTimeout(function () {
+      isAnimating = false;
+    }, 500);
+
     // Aktualisiere die Event-Handler
     updateEventHandlers();
   });
@@ -68,6 +73,6 @@ function updateEventHandlers() {
 }
 
 // Event-Handler starten
-$(document).ready(function() {
+$(document).ready(function () {
   start();
 });
