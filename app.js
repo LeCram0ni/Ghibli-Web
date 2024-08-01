@@ -1,66 +1,44 @@
-window.onload = start;
-
-/* jquery $ */
-
 let isAnimating = false;
 
 function start() {
   // Initiale Event-Handler Zuweisung
-  $("#toShift > img:nth-child(1)").on("click", handleLeftClick);
-  $("#toShift > img:nth-child(3)").on("click", handleRightClick);
+  $("#toShift > img:nth-child(1)").on("click", () => handleClick("left"));
+  $("#toShift > img:nth-child(3)").on("click", () => handleClick("right"));
 }
 
-function handleLeftClick() {
+function handleClick(direction) {
   if (isAnimating) return;
   isAnimating = true;
 
   const $carousel = $(".carousel");
   const imgWidth = $(".carousel img:first-child").width();
 
-  // Stoppe alle laufenden Animationen und setze die Karussell-Position zurück
+  // Stoppe alle laufenden Animationen
   $carousel.stop(true, true);
 
-  // Verschiebe das letzte Bild an den Anfang
-  $carousel.find("img:last-child").prependTo($carousel);
+  if (direction === "left") {
+    // Verschiebe das letzte Bild an den Anfang und setze die Position auf -imgWidth
+    $carousel.find("img:last-child").prependTo($carousel);
+    $carousel.css("left", "-" + imgWidth + "px");
 
-  // Setze das Karussell sofort nach links
-  $carousel.css("left", "-" + imgWidth + "px");
-
-  // Animation zurück zur Ausgangsposition
-  $carousel.animate({ left: 0 }, 300, "swing", function () {
-    setTimeout(function () {
+    // Animation zurück zur Ausgangsposition (0)
+    $carousel.animate({ left: 0 }, 300, "swing", function () {
       isAnimating = false;
-    }, 400);
-    // Aktualisiere die Event-Handler
-    updateEventHandlers();
-  });
-}
+      updateEventHandlers();
+    });
+  } else {
+    // Animation nach links, um das erste Bild aus dem Sichtbereich zu schieben
+    $carousel.animate({ left: "-" + imgWidth + "px" }, 300, "swing", function () {
+      // Verschiebe das erste Bild ans Ende
+      $carousel.find("img:first-child").appendTo($carousel);
 
-function handleRightClick() {
-  if (isAnimating) return;
-  isAnimating = true;
+      // Setze das Karussell sofort zurück auf die Ausgangsposition
+      $carousel.css("left", 0);
 
-  const $carousel = $(".carousel");
-  const imgWidth = $(".carousel img:first-child").width();
-
-  // Stoppe alle laufenden Animationen und setze die Karussell-Position zurück
-  $carousel.stop(true, true);
-
-  // Verschiebe das Karussell nach links
-  $carousel.animate({ left: "-" + imgWidth + "px" }, 300, "swing", function () {
-    // Verschiebe das erste Bild ans Ende
-    $carousel.find("img:first-child").appendTo($carousel);
-
-    // Setze das Karussell zurück
-    $carousel.css("left", 0);
-
-    setTimeout(function () {
       isAnimating = false;
-    }, 400);
-
-    // Aktualisiere die Event-Handler
-    updateEventHandlers();
-  });
+      updateEventHandlers();
+    });
+  }
 }
 
 function updateEventHandlers() {
@@ -68,8 +46,7 @@ function updateEventHandlers() {
   $("#toShift > img").off("click");
 
   // Binde die neuen Event-Handler an die korrekten Bilder
-  $("#toShift > img:nth-child(1)").on("click", handleLeftClick);
-  $("#toShift > img:nth-child(3)").on("click", handleRightClick);
+  start();
 }
 
 // Event-Handler starten
