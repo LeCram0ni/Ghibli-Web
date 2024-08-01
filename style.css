@@ -31,7 +31,7 @@ body {
   background-color: rgb(16, 16, 16);
   flex-direction: column;
   max-width: 100%;
-  
+
 }
 
 header {
@@ -92,10 +92,22 @@ header img {
   background-attachment: fixed;
   background-size: cover;
   background-clip: text;
-  filter: brightness(100%);
-  filter: saturate(250%);
   -webkit-background-clip: text;
   color: transparent;
+  filter: brightness(100%) saturate(250%);
+}
+
+/*firefox fix*/
+@-moz-document url-prefix() {
+  #description>p.colored {
+    background: -moz-linear-gradient(110deg,
+      rgba(255,54,89,1) 0%, rgba(255,154,0,1) 50%, rgba(103,218,193,1) 70%, rgba(41,158,255,1) 100%
+    );
+    background-size: cover;
+    background-clip: text;
+    color: transparent;
+    filter: brightness(100%) saturate(100%);
+  }
 }
 
 .size-small {
@@ -109,23 +121,23 @@ header img {
 }
 
 
-.wrapper{
-  display:flex;
+.wrapper {
+  display: flex;
   margin-top: 3vw;
-  margin-bottom:3vw;
+  margin-bottom: 3vw;
   /*max-width: 99vw;*/
-  
+
 }
 
-.wrapper .carousel{
+.wrapper .carousel {
   white-space: nowrap;
-  cursor:pointer;
-  overflow:hidden;
+  cursor: pointer;
+  overflow: hidden;
   margin: 0 auto;
 }
 
-.carousel img{
-  height:36vw;
+.carousel img {
+  height: 36vw;
 }
 
 
