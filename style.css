@@ -12,7 +12,6 @@ $gradient-radial: radial-gradient(#95C9D4ff, #F2BEA6ff, #BE858Cff, #727840ff, #E
 
 
 body {
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
