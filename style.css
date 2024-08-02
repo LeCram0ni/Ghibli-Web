@@ -163,12 +163,12 @@ header ul li {
 #toShift>img:nth-child(1),
 #toShift>img:nth-child(3) {
   filter: brightness(50%);
-  transition: filter 600ms ease-in-out;
+  transition: filter 200ms ease-in-out;
 }
 
 #toShift>img:nth-child(2) {
   filter: brightness(100%);
-  transition: filter 250ms ease-in-out;
+  transition: filter 200ms ease-in-out;
 }
 
 
@@ -185,7 +185,7 @@ p {
 
 #ghibliLogoBig>img {
   margin-top: 12vw;
-  width: 50%;
+  width: 30vw;
 }
 
 .dm-sans-regular {
