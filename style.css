@@ -31,14 +31,33 @@ body {
 
 header {
   display: flex;
+  width: 80vw;
   margin-right: auto;
+  align-items: center;
 }
 
 /* Ghibli Logo oben links */
 header img {
-  margin-left: -120%;
+  display: inline-block;
   margin-top: 1vw;
   width: 10vw;
+}
+
+header ul{
+  margin:0px;
+  margin-left: 43%;
+  display: inline-block;
+  width: 100vw;
+  font-size: 50pt;
+}
+
+header ul li{
+  padding-top: 2%;
+  padding-left: 3vw;
+  display: inline-block;
+  min-width: 12rem;
+  color:white;
+  list-style-type: none;
 }
 
 .mainImageContainer {
