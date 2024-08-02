@@ -22,7 +22,7 @@ body {
   flex-direction: column;
   max-width: 100%;
 
-  overflow-y: scroll; 
+  overflow-y: scroll;
   overflow-x: hidden;
 
 }
@@ -32,37 +32,38 @@ body {
 header {
   display: flex;
   width: 80vw;
-  margin-right: auto;
   align-items: center;
 }
 
 /* Ghibli Logo oben links */
 header img {
   display: inline-block;
-  margin-top: 1vw;
   width: 10vw;
 }
 
-header ul{
-  margin:0px;
-  margin-left: 43%;
-  display: inline-block;
+header ul {
+  margin: 0px;
+  padding-left: 1vw;
+  display: flex;
+  justify-content: flex-end;
   width: 100vw;
-  font-size: 50pt;
+  font-size: 3vw;
 }
 
-header ul li{
-  padding-top: 2%;
+header ul li {
+  padding: 0.2vw;
   padding-left: 3vw;
+  padding-right: 3vw;
   display: inline-block;
   min-width: 12rem;
-  color:white;
+  color: white;
   list-style-type: none;
+  text-align: center;
 }
 
 .mainImageContainer {
   padding-bottom: 0;
-  margin-bottom: -18vh;
+  margin-bottom: -18vw;
 }
 
 .mainImage {
@@ -80,11 +81,11 @@ header ul li{
 .mainTitle {
   color: white;
   text-align: center;
-  transform: translate(0%, -27vh);
+  transform: translate(0%, -21vw);
 }
 
 .mainTitle span {
-  font-size: 70pt;
+  font-size: 5.5vw;
   margin: 0;
 }
 
@@ -123,21 +124,21 @@ header ul li{
 }
 
 .size-small {
-  font-size: 40pt !important;
+  font-size: 3.4vw !important;
   line-height: 160%;
 }
 
 .size-mid {
-  font-size: 60pt !important;
+  font-size: 4vw !important;
   line-height: 160%;
 }
 
 .wrapper {
   display: flex;
-  margin:0px;
+  margin: 0px;
   margin-top: 3vw;
   margin-bottom: 3vw;
-  
+
 }
 
 .wrapper .carousel {
@@ -146,26 +147,27 @@ header ul li{
   cursor: pointer;
   margin: 0 auto;
   height: 100%;
-  position:relative;
+  position: relative;
   overflow: visible;
-  max-width:99vw;
+  max-width: 99vw;
 }
 
 .carousel img {
   max-height: 1000px;
   width: 72vw;
   object-fit: contain;
-  margin:0;
+  margin: 0;
   transform: translate(-58.5vw, 0px);
 }
 
-#toShift > img:nth-child(1) , #toShift > img:nth-child(3){
-  filter:brightness(50%);
+#toShift>img:nth-child(1),
+#toShift>img:nth-child(3) {
+  filter: brightness(50%);
   transition: filter 600ms ease-in-out;
 }
 
-#toShift > img:nth-child(2){
-  filter:brightness(100%);
+#toShift>img:nth-child(2) {
+  filter: brightness(100%);
   transition: filter 250ms ease-in-out;
 }
 
