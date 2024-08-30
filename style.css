@@ -21,70 +21,70 @@ body {
   background-color: var(--bgColor);
   flex-direction: column;
   max-width: 100%;
-
-  overflow-y: scroll; 
+  overflow-y: scroll;
   overflow-x: hidden;
-
 }
-
-
 
 header {
   display: flex;
-  width: 80vw;
-  margin-right: auto;
   align-items: center;
+  width:75vw;
 }
 
 /* Ghibli Logo oben links */
 header img {
   display: inline-block;
-  margin-top: 1vw;
   width: 10vw;
 }
 
-header ul{
-  margin:0px;
-  margin-left: 43%;
-  display: inline-block;
-  width: 100vw;
-  font-size: 50pt;
+header ul {
+  margin: 0px;
+  padding-left: 1vw;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 3vw;
 }
 
-header ul li{
-  padding-top: 2%;
+header ul li {
+  padding: 0.2vw;
   padding-left: 3vw;
+  padding-right: 3vw;
   display: inline-block;
-  min-width: 12rem;
-  color:white;
+  min-width: 5rem;
+  color: white;
   list-style-type: none;
+  text-align: center;
+}
+
+a{
+  font-family: "DM Sans", sans-serif;
 }
 
 .mainImageContainer {
   padding-bottom: 0;
-  margin-bottom: -18vh;
+  margin-bottom: -18vw;
 }
 
 .mainImage {
   margin-top: 2vw;
   height: 50vw;
-  display: block;
-  width: 89vw;
   border-radius: 4vw 4vw 0px 0px;
+  display: block;
+  width: 83vw;
+  background-size: 83vw;
   background-image: linear-gradient(0deg, var(--bgColor) 10%, var(--bgColorFade) 70%), var(--topImage);
   background-repeat: no-repeat;
-  background-size: 89vw;
   filter: saturate(115%);
 }
 
 .mainTitle {
   color: white;
   text-align: center;
-  transform: translate(0%, -27vh);
+  transform: translate(0%, -21vw);
 }
 
 .mainTitle span {
-  font-size: 70pt;
+  font-size: 5.5vw;
   margin: 0;
 }
 
@@ -94,7 +94,7 @@ header ul li{
 
 #description,
 #description-bottom {
-  font-size: 42pt;
+  font-size: 3vw;
   line-height: 135%;
   color: white;
   overflow: hidden;
@@ -123,21 +123,21 @@ header ul li{
 }
 
 .size-small {
-  font-size: 40pt !important;
+  font-size: 3.4vw !important;
   line-height: 160%;
 }
 
 .size-mid {
-  font-size: 60pt !important;
+  font-size: 4vw !important;
   line-height: 160%;
 }
 
 .wrapper {
   display: flex;
-  margin:0px;
+  margin: 0px;
   margin-top: 3vw;
   margin-bottom: 3vw;
-  
+
 }
 
 .wrapper .carousel {
@@ -146,27 +146,28 @@ header ul li{
   cursor: pointer;
   margin: 0 auto;
   height: 100%;
-  position:relative;
+  position: relative;
   overflow: visible;
-  max-width:99vw;
+  max-width: 99vw;
 }
 
 .carousel img {
   max-height: 1000px;
   width: 72vw;
   object-fit: contain;
-  margin:0;
+  margin: 0;
   transform: translate(-58.5vw, 0px);
 }
 
-#toShift > img:nth-child(1) , #toShift > img:nth-child(3){
-  filter:brightness(50%);
-  transition: filter 600ms ease-in-out;
+#toShift>img:nth-child(1),
+#toShift>img:nth-child(3) {
+  filter: brightness(50%);
+  transition: filter 200ms ease-in-out;
 }
 
-#toShift > img:nth-child(2){
-  filter:brightness(100%);
-  transition: filter 250ms ease-in-out;
+#toShift>img:nth-child(2) {
+  filter: brightness(100%);
+  transition: filter 200ms ease-in-out;
 }
 
 
@@ -183,7 +184,13 @@ p {
 
 #ghibliLogoBig>img {
   margin-top: 12vw;
-  width: 50%;
+  margin-bottom:2vw;
+  width: 17vw;
+}
+
+.footer{
+  display:block;
+  height:500%;
 }
 
 .dm-sans-regular {
@@ -202,4 +209,59 @@ p {
   font-family: "DM Sans", sans-serif;
   font-weight: 700;
   font-style: normal;
+}
+
+
+
+
+
+header {
+  display: flex;
+  justify-content: space-between; /* Ensure space between logo and nav */
+  align-items: center;
+  padding: 1rem; /* Add padding to avoid content touching edges */
+  box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+
+nav ul li {
+  margin: 0;
+  padding: 0 1rem; /* Add space around each list item */
+  font-size: 1.5rem; /* Adjust font size if needed */
+}
+
+nav ul li a {
+  color: white;
+  text-align: center;
+  display: block; /* Make the link block level for easier click */
+  padding: 0.5rem; /* Add padding for better click area */
+  text-decoration: none; /* Remove underline */
+  font-size: 1.7vw;
+}
+
+nav ul li a:hover {
+  background-image: var(--backgroundBlur);
+  background-attachment: fixed;
+  background-size: 20%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  filter: brightness(110%) saturate(250%);
+  transition: all 300ms ease-in-out;
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav ul {
+    flex-direction: column;
+    width: 100%; /* Ensure nav items take full width on smaller screens */
+  }
+
+  nav ul li {
+    padding: 0.5rem 0;
+  }
 }

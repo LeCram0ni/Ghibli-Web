@@ -1,55 +1,72 @@
 let isAnimating = false;
 
 function start() {
-  // Initiale Event-Handler Zuweisung
-  $("#toShift > img:nth-child(1)").on("click", () => handleClick("left"));
-  $("#toShift > img:nth-child(3)").on("click", () => handleClick("right"));
+  $("#toShift > img:nth-child(1)").on("click", handleLeftClick);
+  $("#toShift > img:nth-child(3)").on("click", handleRightClick);
 }
 
-function handleClick(direction) {
+function handleLeftClick() {
   if (isAnimating) return;
   isAnimating = true;
 
   const $carousel = $(".carousel");
   const imgWidth = $(".carousel img:first-child").width();
 
-  // Stoppe alle laufenden Animationen
+  // Stop animations and reset the carousel position
+  $carousel.stop(true, true);
+  
+  // Move the last image to the beginning
+  $carousel.find("img:last-child").prependTo($carousel);
+
+  // Set carousel to the position immediately after the last image is prepended
+  $carousel.css("left", "-" + imgWidth + "px");
+
+  // Animate to original position
+  $carousel.animate({ left: 0 }, 300, "swing", function () {
+    isAnimating = false;
+    updateFilters();
+    updateEventHandlers();
+  });
+}
+
+function handleRightClick() {
+  if (isAnimating) return;
+  isAnimating = true;
+
+  const $carousel = $(".carousel");
+  const imgWidth = $(".carousel img:first-child").width();
+
+  // Stop animations and reset the carousel position
   $carousel.stop(true, true);
 
-  if (direction === "left") {
-    // Verschiebe das letzte Bild an den Anfang und setze die Position auf -imgWidth
-    $carousel.find("img:last-child").prependTo($carousel);
-    $carousel.css("left", "-" + imgWidth + "px");
+  // Animate to the left
+  $carousel.animate({ left: "-" + imgWidth + "px" }, 300, "swing", function () {
+    // Move the first image to the end
+    $carousel.find("img:first-child").appendTo($carousel);
 
-    // Animation zurück zur Ausgangsposition (0)
-    $carousel.animate({ left: 0 }, 300, "swing", function () {
-      isAnimating = false;
-      updateEventHandlers();
-    });
-  } else {
-    // Animation nach links, um das erste Bild aus dem Sichtbereich zu schieben
-    $carousel.animate({ left: "-" + imgWidth + "px" }, 300, "swing", function () {
-      // Verschiebe das erste Bild ans Ende
-      $carousel.find("img:first-child").appendTo($carousel);
+    // Reset carousel position
+    $carousel.css("left", 0);
+    
+    isAnimating = false;
+    updateFilters();
+    updateEventHandlers();
+  });
+}
 
-      // Setze das Karussell sofort zurück auf die Ausgangsposition
-      $carousel.css("left", 0);
-
-      isAnimating = false;
-      updateEventHandlers();
-    });
-  }
+function updateFilters() {
+  const $carousel = $(".carousel img");
+  $carousel.css("filter", "brightness(50%)"); // Set all images to default brightness
+  $carousel.eq(1).css("filter", "brightness(100%)"); // Highlight the central image
 }
 
 function updateEventHandlers() {
-  // Entferne alle vorherigen Event-Handler
   $("#toShift > img").off("click");
-
-  // Binde die neuen Event-Handler an die korrekten Bilder
-  start();
+  $("#toShift > img:nth-child(1)").on("click", handleLeftClick);
+  $("#toShift > img:nth-child(3)").on("click", handleRightClick);
 }
 
-// Event-Handler starten
+// Initialize on document ready
 $(document).ready(function () {
   start();
+  updateFilters(); // Initialize the filter state
 });
